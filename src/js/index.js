@@ -10,14 +10,24 @@ const serve = async (page) => {
         if (req.url === '/') {
           pathname = await `./src/index.html`;
         } else {
-          pathname = await `./src/html/${req.url}`;
+          pathname = await `./src/html/${req.url}.html`;
         }
 
-        const data = await fs.readFile(pathname, {
-          encoding: 'utf8',
-        });
+        let data = await '';
 
-        res.writeHead(200, { 'Content-Type': 'text/html' });
+        try {
+          data = await fs.readFile(pathname, {
+            encoding: 'utf8',
+          });
+          res.writeHead(200, { 'Content-Type': 'text/html' });
+        } catch (error) {
+          data = await fs.readFile('./src/html/404.html', {
+            encoding: 'utf8',
+          });
+          res.writeHead(404, { 'Content-Type': 'text/html' });
+          console.log(error);
+        }
+
         res.write(data);
         res.end();
       })
