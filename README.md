@@ -1,2 +1,1 @@
-# basic-informational-site
-TOP - Basic Informational Site
+# TOP - Educational Project - Basic Informational Site
