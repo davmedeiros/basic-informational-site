@@ -15,7 +15,7 @@ app.get('/contact-me', (req, res) => {
   res.sendFile(path.join(__dirname, '../html/contact-me.html'));
 });
 
-app.use(function (req, res) {
+app.use((req, res) => {
   res.status(404).sendFile(path.join(__dirname, '../html/404.html'));
 });
 
